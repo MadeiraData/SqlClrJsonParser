@@ -2,7 +2,7 @@
 
 A SQL Server CLR wrapper written in C#, for parsing Json documents within SQL Server versions pre-2016 (before the introduction of OPENJSON and JSON_VALUE functions and such).
 
-# Pre-requisites
+## Pre-requisites
 
 Most of the pre-requisites are automatically handled by the Pre-Deployment script:
 
@@ -36,7 +36,7 @@ These requirements are:
 - The System.Runtime.Serialization assembly must be imported into the database.
 - The Newtonsoft.Json DLL file must be imported into the database (it's already included with the project, you just need to specify the SQLCMD parameter that defines its file path location).
 
-# Example Usage
+## Example Usage
 
 Here is an example usage of this assembly within T-SQL:
 
@@ -56,3 +56,7 @@ SELECT *
 FROM OPENJSON (@Json, '$.result.tickets')
 */
 ```
+
+## Known Issues
+
+I didn't implement any error handling, so if you're trying to do something invalid (such as requesting a nonexistent Json path, or mishandling a Json array or whatever), then you're likely to get an exception.
