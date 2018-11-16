@@ -56,3 +56,11 @@ SELECT *
 FROM OPENJSON (@Json, '$.result.tickets')
 */
 ```
+
+## Missing Features
+
+As of right now, the following features are still missing:
+
+- Equivalent of JSON_MODIFY
+- Equivalent of JSON_QUERY
+- Equivalent of FOR JSON (i.e. format a query as a JSON document)
