@@ -16,10 +16,17 @@ public partial class UserDefinedFunctions
     [Microsoft.SqlServer.Server.SqlFunction]
     public static SqlString JsonValue(SqlString json, SqlString path)
     {
-        JObject ja = (JObject)JsonConvert.DeserializeObject(json.Value);
-        JToken token = ja.SelectToken(path.Value);
-        
-        return token.ToString();
+        try
+        {
+            JObject ja = (JObject)JsonConvert.DeserializeObject(json.Value);
+            JToken token = ja.SelectToken(path.Value);
+
+            return token.ToString();
+        }
+        catch
+        {
+            return null;
+        }
     }
 
     [Microsoft.SqlServer.Server.SqlFunction]
@@ -47,24 +54,33 @@ public partial class UserDefinedFunctions
         ArrayList TokenCollection = new ArrayList();
         count = 0;
 
-        JObject ja = (JObject)JsonConvert.DeserializeObject(json.Value);
-        IEnumerable<JToken> tokens = ja.SelectTokens(path.Value);
-
-        foreach (JToken token in tokens)
+        try
         {
-            if (token.Type == JTokenType.Object || token.Type == JTokenType.Array)
-            {
-                foreach (JToken item in token.Children<JToken>())
-                {
-                    TokenCollection.Add(item);
-                }
-            } else
-            {
-                TokenCollection.Add(token);
-            }
-        }
+            JObject ja = (JObject)JsonConvert.DeserializeObject(json.Value);
+            IEnumerable<JToken> tokens = ja.SelectTokens(path.Value);
 
-        return TokenCollection;
+            foreach (JToken token in tokens)
+            {
+                if (token.Type == JTokenType.Object || token.Type == JTokenType.Array)
+                {
+                    foreach (JToken item in token.Children<JToken>())
+                    {
+                        TokenCollection.Add(item);
+                    }
+                }
+                else
+                {
+                    TokenCollection.Add(token);
+                }
+            }
+
+            return TokenCollection;
+
+        }
+        catch
+        {
+            return null;
+        }
     }
 
 }
