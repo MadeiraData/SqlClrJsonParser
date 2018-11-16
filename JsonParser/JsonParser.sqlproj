@@ -74,6 +74,7 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>Assemblies\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
