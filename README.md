@@ -56,7 +56,3 @@ SELECT *
 FROM OPENJSON (@Json, '$.result.tickets')
 */
 ```
-
-## Known Issues
-
-I didn't implement any error handling, so if you're trying to do something invalid (such as requesting a nonexistent Json path, or mishandling a Json array or whatever), then you're likely to get an exception.
