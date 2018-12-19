@@ -18,6 +18,9 @@ FROM sys.databases AS db
 INNER JOIN sys.server_principals AS sp
 ON db.owner_sid = sp.sid
 WHERE db.database_id = 1
+
+EXEC(@cmd);
+							       
 GO
 IF NOT EXISTS (SELECT * FROM sys.assemblies WHERE name = 'System_Runtime_Serialization')
 	CREATE ASSEMBLY System_Runtime_Serialization FROM 'C:\Windows\Microsoft.NET\Framework64\v4.0.30319\System.Runtime.Serialization.dll'
