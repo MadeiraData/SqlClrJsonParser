@@ -64,3 +64,5 @@ As of right now, the following features are still missing:
 - Equivalent of JSON_MODIFY
 - Equivalent of JSON_QUERY
 - Equivalent of FOR JSON (i.e. format a query as a JSON document)
+
+Please see the [GitHub Issues](https://github.com/EitanBlumin/SqlClrJsonParser/issues) page for more info.
